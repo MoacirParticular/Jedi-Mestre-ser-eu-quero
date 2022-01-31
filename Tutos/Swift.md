@@ -525,10 +525,12 @@ O Swift e o Xcode possuem diversas ferramentas e funcionalidades que deixam noss
 
     [Saiba mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73)
     
+    [Saiba mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73)
+    
 ## O que testar?
     Antes de escrever qualquer teste, é importante começar com o básico: o que você precisa testar? Se o seu objetivo é aumentar um aplicativo que já existe, você deveria escrever para qualquer componente que você deseja criar ou modificar.
     
-    
+    [aqui](https://www.apple.com/br/accessibility/). 
     
     
     
