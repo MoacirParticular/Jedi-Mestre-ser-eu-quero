@@ -454,8 +454,7 @@ O Swift e o Xcode possuem diversas ferramentas e funcionalidades que deixam noss
     O que vamos falar aqui é de boas práticas que podem aumentar o nível de acessibilidade em seu app, além de outras ferramentas que podem deixar o app nota 10 em acessibilidade! 😍
     
 ## O iOS possui várias ferramentas de acessibilidade, você pode ver mais sobre elas [aqui](https://www.apple.com/br/accessibility/). 
-    
-    
+
 ### VoiceOver
     VoiceOver é um leitor de tela baseado em gestos que permite usar o iPhone mesmo sem enxergar. 
     
@@ -521,16 +520,12 @@ O Swift e o Xcode possuem diversas ferramentas e funcionalidades que deixam noss
         Refactor: durante o passo green, escrevemos código suficiente para ter os testes funcionando e, como vimos, não importa se código está feio e errado. No passo “refactor” (refatoração), iremos melhorar o código, removendo duplicações, extraindo valores em comum, etc. Faça nesse passo o que for preciso para tornar o código o melhor possível. Os testes te ajudarão a não quebrar as funcionalidades já implementadas enquanto estiver refatorando o código.
 
     ## Teste de UI no Xcode
-        Os testes de UI chegaram no Xcode 7. Você pode gravar interações com a interface do seu app. Os testes de UI funcionam encontrando, queries e eventos dos objetos de interface e enviando isso para eles.
+        Os testes de UI chegaram no Xcode 7. Você pode gravar interações com a interface do seu app. Os testes de UI funcionam encontrando, queries e eventos dos objetos de interface e enviando isso para eles. 
+        [Saiba Mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73).
 
-    [Saiba mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73)
-    
-    [Saiba mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73)
     
 ## O que testar?
     Antes de escrever qualquer teste, é importante começar com o básico: o que você precisa testar? Se o seu objetivo é aumentar um aplicativo que já existe, você deveria escrever para qualquer componente que você deseja criar ou modificar.
-    
-    [aqui](https://www.apple.com/br/accessibility/). 
     
     
     
