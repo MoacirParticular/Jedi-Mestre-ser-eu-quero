@@ -262,6 +262,19 @@ Antes do storyboard, cada UIViewController tinha um .xib associado a ele. .Xib �
 
 A escolha entre usar Storyboards e escrever views programaticamente em um projeto iOS é muito subjetiva. Tendo lidado com ambas no passado, eu pessoalmente, apoio projetos que são completamente escritos com views programáticas – pela sua capacidade de permitir que várias pessoas façam alterações na mesma tela, sem conflitos impossíveis de se resolver, e pelo code review facilitado.
 
+## Push x Presenter
+Push
+    Algumas classes de interface do usuário são muito autocontidas e não exigem muito esforço para serem apresentadas, como neste exemplo - no qual estamos enviando um ProfileViewController simples para a pilha de navegação:
+
+```
+    let vc = ProfileViewController(user: user)
+    navigationController?.pushViewController(vc, animated: true)
+```
+
+Presenter
+    Os apresentadores também podem fornecer uma ótima maneira de garantir que certos controladores de visualização sejam apresentados de maneira correta. Ao fazer a apresentação modal, alguns controladores de visualização precisam ser empacotados em aUINavigationController, a fim de suportar mais navegação dentro dessa nova pilha modal, e isso pode ser fácil de esquecer se o mesmo controlador de visualização for apresentado em vários lugares.
+
+
 ## Notification Center
 
 Um mecanismo de envio de notificações que permite a transmissão de informações a observadores registrados.
@@ -376,39 +389,144 @@ O Coordinator é um componente amplamente utilizado em algumas arquiteturas. Ele
 
 ## Orientação a Objetos
 
-A programação orientada a objetos surgiu como uma alternativa a essas características da programação estruturada. O intuito da sua criação também foi o de aproximar o manuseio das estruturas de um programa ao manuseio das coisas do mundo real, daí o nome "objeto" como uma algo genérico, que pode representar qualquer coisa tangível.
+    A programação orientada a objetos surgiu como uma alternativa a essas características da programação estruturada. O intuito da sua criação também foi o de aproximar o manuseio das estruturas de um programa ao manuseio das coisas do mundo real, daí o nome "objeto" como uma algo genérico, que pode representar qualquer coisa tangível.
 
 ## Se conhece Orientação a Objetos, descreva com poucas palavras
 
 ### Herança
-Herança é um mecanismo que permite que características comuns a diversas classes sejam fatoradas em uma classe base, ou superclasse. A partir de uma classe base, outras classes podem ser especificadas. Cada classe derivada ou subclasse apresenta as características (estrutura e métodos) da classe base e acrescenta a elas o que for definido de particularidade para ela.
+    Herança é um mecanismo que permite que características comuns a diversas classes sejam fatoradas em uma classe base, ou superclasse. A partir de uma classe base, outras classes podem ser especificadas. Cada classe derivada ou subclasse apresenta as características (estrutura e métodos) da classe base e acrescenta a elas o que for definido de particularidade para ela.
 
 ### Polimorfismo
-Polimorfismo é o princípio pelo qual duas ou mais classes derivadas da mesma superclasse podem invocar métodos que têm a mesma assinatura, mas comportamentos distintos.
+    Polimorfismo é o princípio pelo qual duas ou mais classes derivadas da mesma superclasse podem invocar métodos que têm a mesma assinatura, mas comportamentos distintos.
 
 ### Threads
-o threading tem tudo a ver com gerenciar como o trabalho é priorizado em seu aplicativo. Fazer seu código ser executado mais rápido é ótimo, mas o que importa mais é a rapidez com que o usuário percebe que seu aplicativo é.
+    O threading tem tudo a ver com gerenciar como o trabalho é priorizado em seu aplicativo. Fazer seu código ser executado mais rápido é ótimo, mas o que importa mais é a rapidez com que o usuário percebe que seu aplicativo é.
 Seu objetivo como desenvolvedor é priorizar qualquer coisa com a qual o usuário possa ver e interagir. Isso faz com que seu aplicativo se sinta mais rápido e rápido. Não faça o usuário esperar por algo para carregar que ele não perceba ou se importe.
 
 
 ## Qual a diferença de Model para ViewModel ?
 
 ### Model
-A camada de modelo é responsável pela lógica de negócios do aplicativo. Ele gerencia o estado do aplicativo. Isso também inclui leitura e gravação de dados, estado persistente do aplicativo e pode até incluir tarefas relacionadas ao gerenciamento de dados, como rede e validação de dados.
+    A camada de modelo é responsável pela lógica de negócios do aplicativo. Ele gerencia o estado do aplicativo. Isso também inclui leitura e gravação de dados, estado persistente do aplicativo e pode até incluir tarefas relacionadas ao gerenciamento de dados, como rede e validação de dados.
 
 ### ViewModel
-A camada de ViewModel (visualização) tem duas tarefas importantes, apresentar dados ao usuário e lidar com a interação do usuário.
+    A camada de ViewModel (visualização) tem duas tarefas importantes, apresentar dados ao usuário e lidar com a interação do usuário.
 
 
-## Notificação de Pouca Memória
-Se o sistema ficar com pouca memória livre e não conseguir recuperar a memória encerrando aplicativos suspensos, o UIKit enviará um aviso de baixa memória para aplicativos em execução. O UIKit fornece avisos de baixa memória das seguintes maneiras:
-It calls the applicationDidReceiveMemoryWarning(_:) method of your app delegate.
-It calls the didReceiveMemoryWarning() method of any active UIViewController classes.
-It posts a didReceiveMemoryWarningNotification object to any registered observers.
-Ele fornece um aviso para despachar filas do tipo DISPATCH_SOURCE_TYPE_MEMORYPRESSURE.
-Quando seu aplicativo receber um aviso de baixa memória, libere o máximo de memória possível o mais rápido possível. Remova referências a imagens, arquivos de mídia ou quaisquer arquivos de dados grandes que já tenham uma representação no disco e possam ser recarregados posteriormente. Remova referências a quaisquer objetos temporários que você não precise mais. Se as tarefas ativas puderem consumir quantidades significativas de memória, pause as filas de despacho ou restrinja o número de operações simultâneas que seu aplicativo executa.
-Importante
-A falha em reduzir o uso da memória do seu aplicativo pode resultar no encerramento do seu aplicativo. Portanto, considere gravar quaisquer dados não salvos no disco como parte de seus esforços de limpeza.
-Para testar a resposta do seu aplicativo a um aviso de baixa memória, use o comando Simular Aviso de Memória no iOS Simulator.
+##
+
+## Gerenciamento de memória no Swift
+O Swift e o Xcode possuem diversas ferramentas e funcionalidades que deixam nossa vida mais fácil, ao desenvolver para dispositivos iOS. A forma como o Swift gerencia a memória é desses recursos que nos ajudam no desenvolvimento dentro deste ambiente. Neste texto veremos como o Swift trata nosso uso de memória e como é o processo por baixo dos panos. Mas antes, precisamos conversar um pouco sobre os elementos que afetam a memória, vamos lá?
+
+[Saiba Mais, com Lucas Leitão](https://medium.com/@lucas.leitao25/gerenciamento-de-memória-no-swift-3284269d5d19)
 
 
+## Storyboard 
+    Storyboards chegaram com o iOS 5, e o diferencial é poder lidar com a construção da hierarquia de diversas views e a navegação entre elas, sendo o view controller sua unidade de trabalho mínima.
+    
+    A principal vantagem a ser citada é o ganho em produtividade. Não que escrever UIvia código seja difícil, mas pode ser um processo tedioso e de muitos ciclos de tweak, build, run. Já que, na maior parte das vezes, código de UI é trivial e repetitivo, congelá-lo em um resource pode ser visto como uma vantagem.
+    
+
+## XIB
+
+    Em sua concepção inicial, o IB, que até o Xcode 3 não era integrado à IDE, atuava em arquivos chamados NIBs (versão binária do formato, que posteriormente foi modificada para os XIBs, de versionamento mais conveniente). Sua unidade de trabalho mínima é a UIView.
+    
+    [Saiba mais sobre StoryBoards e Xibs](http://equinocios.com/storyboards/2016/03/07/desmistificando-storyboards/)
+    
+    
+## O que é Cocoapods, pod install, pod file, pod spec ?
+
+### CocoaPods, 
+    é um gerente de dependências para projetos Swift e Objective-C Cocoa. Tem mais de 88 mil bibliotecas e é usado em mais de 3 milhões de aplicativos. CocoaPods podem ajudá-lo a dimensionar seus projetos de forma elegante.
+
+### Pod Install,
+    Usado para instalar os pods configurados no arquivos PodFile
+    
+### PodFile, 
+    arquivo de configuração que contem o endereço e configuração para a instalação dos pods
+    
+### PodSpec, 
+    Uma especificação descreve uma versão da biblioteca Pod. Ele inclui detalhes sobre de onde a fonte deve ser obtida, quais arquivos usar, as configurações de compilação a serem aplicadas e outros metadados gerais, como nome, versão e descrição.
+    
+## Acessibilidade
+    Hoje, mais de 1 bilhão de pessoas possuem algum tipo de deficiência, ou seja 1 a cada 7 pessoas no planeta. São mais de 2 milhões de apps disponíveis na App Store, o que você faz para que seu app seja utilizado por todos?
+    
+    O que vamos falar aqui é de boas práticas que podem aumentar o nível de acessibilidade em seu app, além de outras ferramentas que podem deixar o app nota 10 em acessibilidade! 😍
+    
+## O iOS possui várias ferramentas de acessibilidade, você pode ver mais sobre elas [aqui](https://www.apple.com/br/accessibility/). 
+    
+    
+### VoiceOver
+    VoiceOver é um leitor de tela baseado em gestos que permite usar o iPhone mesmo sem enxergar. 
+    
+    
+### Zoom
+    A função do Zoom da acessibilidade não tem nada a ver com o zoom da sua câmera: ela se aplica ao conteúdo da própria tela do celular.
+
+### Seguir o Foco
+
+### Tamanho da Fonte
+
+### Lupa
+    Diferente do Zoom, que se aplica na própria tela, a ferramenta de Lupa funciona através da câmera do seu celular. Ao ativá-la, você pode focar em algo que está ao seu redor e deseja ver com bastante precisão.
+
+### Inversão de Cores Clássica ou Inteligente
+    Muito se utilizava este recurso antes do surgimento do modo escuro no iPhone, pois cores claras se tornam escuras - ou seja, fundos brancos de um navegador, uma anotação do Notas ou a tela de uma conversa de um app de comunicação automaticamente se tornam fundos pretos -, dando uma melhor leitura à noite.
+
+### Calibração de Cores
+    Muito utilizado para tratar necessidades especiais, os filtros de cor do iOS podem ajudar a recalibrar as cores da tela do dispositivo. A função traz filtros de tons de cinza, de conjunto de cores indicadas para tratar protanopia, daltonismo ou tritanopia, além da opção de sobreposição de uma cor em toda a tela.
+
+### Redução de Movimento
+    O recurso de reduzir o movimento entre telas do iPhone foi lançado pela Apple por conta de uma polêmica que dizia que os efeitos excessivos ao trocar de apps, páginas e telas do iOS 7 causavam mal-estar, enjoos e provocavam labirintite em alguns de seus usuários.
+
+### Assistive Touch
+    Definitivamente é o recurso de acessibilidade que as pessoas mais usam no iPhone - ou pelo menos era, quando o dispositivo possuía um botão Home (até a geração do iPhone 8) que falhava não com muita dificuldade, o que obrigava as pessoas a ativarem este recurso de Assistive Touch para continuarem a usar o celular sem maiores problemas.
+
+### Toques Atrás
+    O recurso de Tocar Atrás foi apresentado no lançamento do iOS 14 somente aos aparelhos com o fundo de vidro, ou seja, da geração do iPhone 8 em diante. Com ele, você pode configurar uma função para quando der dois toques rápidos na parte traseira do seu aparelho, e outra para quando der três toques.
+
+### Piscar o LED do Flash
+    A funcionalidade de piscar o LED do flash ao receber alertas é outra que é preciso avaliar bem o seu uso, pois pode criar um verdadeiro festival de luzes no seu quarto ou ambiente de trabalho. Caso você seja adepto do modo Não Perturbe, você pode até mantê-lo ativado sem problemas, pois o LED do flash só vai ser disparado quando você receber ligações autorizadas conforme seus ajustes.
+
+### Atalhos para Acessibilidade
+    Para utilizar um ou mais de algum desses recursos de uma forma muito mais rápida do que ter que ir para os Ajustes toda vez que precisar deles, você pode ativar o atalho de acessibilidade.
+
+    Para ativar o atalho, entre em Ajustes > Acessibilidade > Atalho de Acessibilidade (última opção, ao final da tela) > Selecione uma ou mais funções.
+
+
+## Testes
+
+    Escrever testes não é a tarefa mais glamurosa, mas é importante, pois os testes fazem com que seu aplicativo não se torne uma bagunça com um monte de bugs escondidos.
+
+    Com o advento dos testes unitários e das novas boas práticas adotadas pelos demais desenvolvedores do universo web e desktop, os testes unitários se fazem necessários para assegurar o bom funcionamento do código de negócio uma vez implementado e evoluído na aplicação. Evoluir código é, hoje, uma prática totalmente associada ao uso de testes ao longo do ciclo de vida do software, sendo extremamente necessário o bom conhecimento de tais práticas por parte do time como um todo: tanto desenvolvedores, que terão de assegurar uma boa cobertura das regras implementadas, quanto dos profissionais de qualidade, que garantirão o correto funcionamento das mesmas.
+
+    TDD + Xcode
+
+    Em 1998, a companhia suíça Sen:te desenvolveu um dos primeiros frameworks de teste para o Objective-C: o OCUnit. Com a chegada do Xcode 2.1, a Apple adicionou o OCUnit ao Xcode. Uma das razões para isso foi que a mesma Apple o usou para desenvolver o Core Data (o framework de persistência e grafos oficial do OS X) ao mesmo tempo em que desenvolviam o Tiger, o OS com o qual o Core Data seria empacotado e vendido.
+
+    A Apple percebeu o quão valiosos os testes de unidade podem ser quando se trata do desenvolvimento de sistemas complexos em ambientes de constante mudança. Em vista disso, após a inclusão do framework de testes ao Xcode, foi possível medir a considerável queda no tempo total necessário para iniciar a criação dos testes unitários e, como consequência, mais pessoas começaram a escrevê-los, findando numa importante quebra de paradigma. Ao mesmo tempo, eles queriam que os desenvolvedores da comunidade como um todo também se beneficiassem dos testes unitários.
+
+    Em 2008, o OCUnit foi integrado ao iPhone SDK 2.2 para permitir testes unitários de aplicativos para iPhone. Quatro anos mais tarde, foi renomeado para XCUnit (XC significa Xcode).
+
+    Finalmente, em 2013, o teste de unidade tornou-se um cidadão de primeira classe no Xcode 5 com a introdução do XCTest. Com o XCTest, a Apple adicionou elementos de interface do usuário específicos para Xcode, o que permitiu a execução de testes específicos, encontrando falhas mais rapidamente, além de permitir uma visão geral dos testes como um todo.
+
+    ## TDD Workflows – red, green e refactor
+
+        O TDD abrange três passos básicos em seu workflow (fluxo de execução):
+
+        Red: nesse ciclo, começamos escrevendo um teste falho. Ele precisa essencialmente testar uma funcionalidade obrigatória do software que ainda não está implementada ou um caso de exceção que queremos ter certeza de que será coberto. O nome “red” (vermelho) vem do fato de a maior parte dos frameworks indicar um teste falho através dessa cor. É muito importante que o teste escrito nesse passo falhe, caso contrário corremos o risco de estar implementando um teste que sempre passa, independente dos parâmetros que passemos para ele, sendo assim inútil. Ainda pode ser possível que a funcionalidade já esteja implementada. Em ambos os casos, muita atenção na hora de implementá-los.
+        
+        Green: nesse passo precisamos escrever o código o mais simples possível, o suficiente para passar no teste. Não importa se o código recém-escrito é bom ou não (pode ser inútil e até mesmo errado), o importante é fazer com que todos os testes passem. O nome “green” (verde) se refere a como a maioria dos frameworks identifica um teste que passou. É muito importante escrever o código o mais simplista possível para fazer o teste passar, pois através disso seremos capazes de escrever o código que de fato precisamos.
+        
+        Refactor: durante o passo green, escrevemos código suficiente para ter os testes funcionando e, como vimos, não importa se código está feio e errado. No passo “refactor” (refatoração), iremos melhorar o código, removendo duplicações, extraindo valores em comum, etc. Faça nesse passo o que for preciso para tornar o código o melhor possível. Os testes te ajudarão a não quebrar as funcionalidades já implementadas enquanto estiver refatorando o código.
+
+    ## Teste de UI no Xcode
+        Os testes de UI chegaram no Xcode 7. Você pode gravar interações com a interface do seu app. Os testes de UI funcionam encontrando, queries e eventos dos objetos de interface e enviando isso para eles.
+
+    [Saiba mais](https://hoffsilva.medium.com/ios-teste-unitário-e-teste-de-ui-tutorial-1360bb66ff73)
+    
+## O que testar?
+    Antes de escrever qualquer teste, é importante começar com o básico: o que você precisa testar? Se o seu objetivo é aumentar um aplicativo que já existe, você deveria escrever para qualquer componente que você deseja criar ou modificar.
+    
+    
+    
